@@ -1,0 +1,73 @@
+{% comment %} {% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="food-detail-container">
+    <h1>{{ food.foodname }}</h1>
+
+    <!-- Display food image -->
+    {% if food.image %}
+        <img src="{{ food.image.url }}" alt="{{ food.foodname }}" class="food-image">
+    {% else %}
+        <p>No image available</p>
+    {% endif %}
+
+    <p><strong>Description:</strong> {{ food.description }}</p>
+    <p><strong>Price:</strong> ${{ food.price }}</p>
+
+    <div class="average-rating">
+        <h3>Average Rating: {{ average_rating|default:0 }} / 5</h3>
+        <div class="rating-stars">
+            <!-- Full stars for the average rating -->
+            {% for i in 0|to:average_rating %}
+                <span class="star">&#9733;</span>  <!-- Full star -->
+            {% endfor %}
+            <!-- Empty stars to make up to 5 stars -->
+            {% for i in average_rating|to:5 %}
+                <span class="star">&#9734;</span>  <!-- Empty star -->
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Display all ratings -->
+    <h3>Ratings:</h3>
+    {% if ratings %}
+        <ul class="rating-list">
+            {% for rating in ratings %}
+                <li>
+                    <strong>{{ rating.user.username }}:</strong>
+                    <!-- Full stars for the rating score -->
+                    {% for i in 0|to:rating.score %}
+                        <span class="star">&#9733;</span> <!-- Full star -->
+                    {% endfor %}
+                    <!-- Empty stars to make up to 5 stars -->
+                    {% for i in rating.score|to:5 %}
+                        <span class="star">&#9734;</span> <!-- Empty star -->
+                    {% endfor %}
+                    <p>{{ rating.comment }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No ratings yet.</p>
+    {% endif %}
+
+    <!-- Add a rating form (if logged in) -->
+    {% if user.is_authenticated %}
+        <h3>Add Your Rating:</h3>
+        <form method="post" action="{% url 'food_detail' food.id %}">
+            {% csrf_token %}
+            <label for="score">Score (1-5):</label>
+            <input type="number" name="score" id="score" min="1" max="5" required>
+            <br>
+            <label for="comment">Comment:</label>
+            <textarea name="comment" id="comment" rows="4" required></textarea>
+            <br>
+            <button type="submit">Submit Rating</button>
+        </form>
+
+    {% else %}
+        <p>Please log in to add a rating.</p>
+    {% endif %}
+</div>
+{% endblock content %} {% endcomment %}

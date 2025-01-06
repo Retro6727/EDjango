@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe-Cafetaria</title>
+    <link rel="stylesheet" href="{% static 'css\style1.css' %}">
+    <link rel="stylesheet" href="{% static 'css\bootstrap.min.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+</head>
+<body>
+    <header>
+        {% block navbar %}
+        <div style="background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%); padding-top: 30px">
+            <h1>Cafe-Cafetaria</h1>
+            <p class="text text-center">(Admin Only)</p>
+            <div class="logo text-center">
+                <img src="{% static 'images/coffee-cup.gif'%}" width="30px" height="32px">
+            </div>
+        </div>
+            {% include 'navbar.html' %}
+        {% endblock %}
+    </header>
+    
+    {% block content %}
+    <!-- Your main content goes here -->
+    {% endblock %}
+    
+    <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+    <script src="{% static 'js\bootstrap.min.js' %}"></script>
+</body>
+</html>

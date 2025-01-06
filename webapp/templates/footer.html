@@ -1,0 +1,37 @@
+{% load static %}
+{% block footer %}
+<div class="container-fluid bg-secondary text-light pt-4">
+    <footer class="footer bottom-0 w-100 pb-3">
+        <!-- Brand Section -->
+        <div class="text-center mb-3">
+            <h1 class="text">Cafe Cafeteria</h1>
+            <p>This website is created using Django</p>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="text-center mb-3">
+            <ul class="list-unstyled d-inline-flex gap-3">
+                <li><a href="{% url 'home' %}" class="text-light text-decoration-none">Home</a></li>
+                <li class="text-light text-decoration-none">About</li>
+                <li class="text-light text-decoration-none">Menu</li>
+            </ul>
+        </div>
+
+        <!-- Social Media Icons -->
+        <div class="text-center mb-3">
+            <h4>Follow Us On</h4>
+            <a href="https://twitter.com" target="_blank" class="mx-2">
+                <img src="{% static 'images/twitter.png' %}" width="40" height="40" alt="Twitter" class="hover-grow">
+            </a>
+            <a href="https://facebook.com" target="_blank" class="mx-2">
+                <img src="{% static 'images/facebook.png' %}" width="40" height="40" alt="Facebook" class="hover-grow">
+            </a>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="text-center text-muted">
+            <small>&copy; 2024 Cafe Cafeteria. All Rights Reserved.</small>
+        </div>
+    </footer>
+</div>
+{% endblock %}

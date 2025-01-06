@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load ratings %}
+{% load static %}
+
+{% block title %}
+<title>Food Menu</title>
+<hr />
+<link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+{% endblock title %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+    <h1 class="text-center my-4">Food Menu</h1>
+
+    <!-- Breadcrumb Navigation -->
+    <div class="container">
+        <div class="row">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Menu</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Food Menu Section -->
+    <div class="container" style="background-color: blanchedalmond">
+        <div class="row vh-75 g-3">
+            {% for product in product %}
+            <div class="col-lg-5 d-flex align-items-stretch">
+                <div class="card w-100 shadow-sm">
+                    <img src="{{ product.image.url }}" class="full-height-image rounded-top" alt="{{ product.foodname }}">
+                    <div class="card-body">
+                        <label>User Feedback</label>
+                        <div>
+                            {% ratings product %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <h3 class="card-title">{{ product.foodname }}</h3>
+                <p class="card-text">{{ product.description|truncatewords:15 }}</p>
+                <h3 class="fw-bold text-warning">${{ product.price }}</h3>
+                <a href="{% url 'addcart' product.id %}" class="btn btn-success">Add to Cart</a>
+                <a href="{% url 'viewcart' %}" class="btn btn-danger">View Cart</a>
+
+                {% if success %}
+                    <div class="alert alert-success">
+                        {{ success }}
+                    </div>
+                {% endif %}
+
+                {% if msg %}
+                    <div class="alert alert-danger">    
+                        {{ msg }}
+                    </div>
+                {% endif %}
+
+                <!-- Review Section -->
+                <div class="row mt-5">
+                    <div>
+                        <h3>Review</h3>
+                        <textarea class="form-control w-100 custom-textarea"></textarea>               
+                        <button class="btn btn-success my-2">Post</button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        {% block footer %}
+            {% include 'footer.html' %}
+        {% endblock %}
+    </footer>
+
+    <!-- JavaScript for Star Ratings -->
+    <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+{% endblock content %}

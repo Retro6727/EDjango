@@ -1,0 +1,184 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+h1{
+    text-align: center;
+    font-family: Lobster Two;
+}
+h2, h3{
+    font-family: Lobster Two;
+}
+
+.topside{
+    background-color: red;
+    opacity: 40%;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px; /* Adjust padding as needed */
+}
+
+.cart-icon {
+    margin-left: auto; /* Pushes the cart icon to the right */
+}
+
+a{
+    color: white; 
+    text-decoration: none;
+}
+
+.card{
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    padding: 16px; 
+    width: 400px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin-bottom: 20px;
+    font-family: 'Lobster Two';
+}
+
+.card-body{
+    flex-grow: 1;
+}
+
+
+.wrapper{
+    overflow: hidden;
+    width: 100%;
+}
+
+.wrapper .track{
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.wrapper .food{
+    width: 150px;
+    margin-right: 15px;
+}
+
+
+.card-img-top {
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    border-radius: 10px; /* Rounded corners */
+    transition: transform 0.3s ease; /* Smooth transition for hover effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+
+.card-img-top:hover {
+    transform: scale(1.05); /* Slightly enlarge image on hover */
+}
+
+.card-img-top {
+    width: 100%; /* Ensure images take full width of the card */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Rounded corners */
+}
+
+.card {
+    margin-bottom: 20px; /* Space between cards */
+    border: none; /* Remove default card border */
+    transition: box-shadow 0.3s ease; /* Smooth transition for hover effect */
+}
+
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+#main-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content {
+    flex: 1; /* This makes the content area grow and push the footer down */
+}
+
+/* Hover effects for navigation links */
+.footer a:hover {
+    color: #ffd700; /* Gold color on hover */
+    text-decoration: underline;
+}
+
+/* Grow effect for social media icons */
+.hover-grow {
+    transition: transform 0.3s ease-in-out;
+}
+.hover-grow:hover {
+    transform: scale(1.2);
+}
+
+/* Smooth transition for buttons and links */
+.footer a, .footer img {
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Default height for larger screens */
+#carouselExampleAutoplaying {
+    height: 500px;
+    overflow: hidden;
+}
+
+/* Adjust height for smaller screens */
+@media (max-width: 768px) {
+    #carouselExampleAutoplaying {
+        height: 300px;  /* Smaller height for mobile devices */
+    }
+}
+
+/* Ensure all items fill the height */
+.carousel-item {
+    height: 100%;
+}
+
+/* Make sure images and videos are scaled properly */
+.carousel-item img, 
+.carousel-item video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.card-header {
+    background-color: #f8f9fa; 
+  }
+  
+  .card-body {
+    background-color: #f8f9fa; 
+  }
+  
+  .img-fluid {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .btn-outline-secondary {
+    border-color: #dee2e6;
+  }
+  
+  /* Add more custom CSS for colors, fonts, spacing, etc. */
+
+  /* .full-height-image {
+        width: 100%; 
+        height: auto; 
+        border-radius: 10px; 
+        transition: transform 0.3s ease-in-out; 
+    }
+
+    .full-height-image:hover {
+        transform: rotate(30deg); /* Add 'deg' for valid rotation */
+   /* } */

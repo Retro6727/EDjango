@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    <title>Cart</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock title %}
+
+{% block content %}
+
+<div class="container my-4">
+    <div class="row">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item" aria-current="page" hidden><a href="viewcart">View Product</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Cart</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h2 class="mb-4">Shopping Cart</h2>
+            {% if data %}
+            <div class="card rounded-3 mb-4 w-100">
+                <div class="card-body p-4">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Name</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for product in data %}
+                            <tr>
+                                <td>
+                                    <img src="{{ product.pid.image.url }}" class="img-fluid rounded-3" alt="{{ product.pid.foodname }}" style="max-height: 120px; max-width: 120px;">
+                                </td>
+                                <td>{{ product.pid.foodname }}</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <a href="/updateqty/0/{{ product.id }}" class="btn btn-link px-2"><button class="btn btn-white">-</button></a>
+                                        <input type="number" value="{{ product.qty }}" class="form-control form-control-sm text-center" style="width: 60px;" readonly>
+                                        <a href="/updateqty/1/{{ product.id }}" class="btn btn-link px-2"><button class="btn btn-white">+</button></a>
+                                    </div>
+                                </td>
+                                <td>$ {{ product.pid.price }}</td>
+                                <td>
+                                    <a href="/remove/{{ product.id }}">
+                                        <img src="{% static "images/delete.png" %}" width="20" height="20">
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% else %}
+                <p class="text-muted">Your cart is empty.</p>
+            {% endif %}
+        </div>
+        <div class="col-md-4 p-3">
+            <h2 class="mb-4">Total Price</h2>
+            <div class="card text-center">
+                <div class="card-body">
+                    <label>Total</label><h4 class="mb-4">$ {{ total }}</h4>
+                    <a href="{% url 'checkout' %}" class="btn btn-dark btn-lg">Proceed to Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    {% block footer %}
+        {% include 'footer.html' %}
+    {% endblock %}
+</footer>
+
+{% endblock content %}

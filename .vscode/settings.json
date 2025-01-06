@@ -1,0 +1,8 @@
+{
+    "CodeGPT.apiKey": "CodeGPT Plus Beta",
+    "python.testing.pytestArgs": [
+        "cafeproject"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
+}

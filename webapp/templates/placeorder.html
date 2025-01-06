@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+<title>Order Summary</title>
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    {% if data %}
+    <p>Name: {{ data.0.user.username }}</p>
+    <p>Email: {{ data.0.user.email }}</p>
+    {% endif %}
+</div>
+
+<div class="container">
+    <h2 class="text-center">Order Summary</h2>
+    {% if data %}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for x in data %}
+            <tr>
+                <td><img src="{{ x.items.image.url }}" alt="{{ x.items.foodname }}" class="img-fluid" style="max-height: 80px;"></td>
+                <td>{{ x.items.foodname }}</td>
+                <td>${{ x.items.price }}</td>
+                <td>{{ x.quantity }}</td>
+                <td>${{ x.total_price }}</td>
+                <td>{{ x.payment_status }}</td>  <!-- Displaying the payment status -->
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr class="table-secondary">
+                <td colspan="4" class="text-end"><strong>Grand Total:</strong></td>
+                <td><strong>${{ total }}</strong></td>  <!-- Displaying the total -->
+            </tr>
+        </tfoot>
+    </table>
+
+    <!-- Button to return to home -->
+    <a href="{% url 'home' %}"><button class="btn btn-primary">Return to Home</button></a>
+    {% else %}
+    <!-- Message when no orders are placed -->
+    <p class="alert alert-warning text-center">No orders placed yet.</p>
+    {% endif %}
+</div>
+
+{% endblock content %}

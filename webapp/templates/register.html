@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css\style.css' %}">
+    <link rel="stylesheet" href="{% static 'css\bootstrap.min.css' %}">
+</head>
+{% block content %}
+
+<div class="container-fluid">
+  <section class="h-100 d-flex align-items-center justify-content-center py-3" style="background-image: url('{% static 'images/registerbackground.jpg' %}'); background-size: cover; ">
+    <div class="card border-primary" style="border-radius: 12px; width: 500px; padding: 20px;">
+      <form class="px-md-2" method="POST">
+        <h3 class="text-center">Registration Page</h3>
+        {% csrf_token %}
+        {{forms|crispy}}
+        <button type="submit" class="btn btn-secondary btn-hover btn-lg w-100 mb-1">Submit</button>
+      </form>
+      <br/>
+      <br/>
+      <label>Already have an account?</label>
+      <a href="{% url 'login_details' %}" class="text-decoration-none">Login here</a>
+    </div>          
+    </section>
+</div>
+<script src="{% static 'js\bootstrap.min.js' %}"></script>
+{% endblock content %}  

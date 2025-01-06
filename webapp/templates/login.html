@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title>Login</title>
+{% endblock title %}
+
+
+{% block content %}
+    <h1>Login</h1>
+        <div class="card d-flex justify-content-center align-items-center" style="width: 400px; margin: auto;">
+        <p>New User? <a href="{% url 'register' %}" style="text-decoration: none;">Register Here</a></p>
+            <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{logform|crispy}}
+                    <button class="btn btn-primary my-2">Login</button>
+                    {% if msg %}
+                        <div class="alert alert-danger">    
+                        {{msg}}
+                        </div>
+                    {% endif %}
+                </form>
+                <a href={% url "forgotpass" %}>Forgot Password</a>
+            </div>
+        </div>
+    <script src="{% static 'js\bootstrap.min.js' %}"></script>
+{% endblock content %}
